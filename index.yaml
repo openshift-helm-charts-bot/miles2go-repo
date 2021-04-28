@@ -1,0 +1,32 @@
+apiVersion: v1
+entries:
+  test-org1-awesome:
+  - annotations:
+      helm-chart.openshift.io/archs: all
+      helm-chart.openshift.io/digest: sha256:357f067395dfb6c97032bdca4a7e94f6f8cb1df0d3df5684ec71b6552737b767
+      helm-chart.openshift.io/lastCertifiedTime: 2021-04-24 22:42:13.02801202 +0000
+        UTC m=+4.711723151
+      helm-chart.openshift.io/name: get your awesomeness here
+      helm-chart.openshift.io/provider: acme
+      helm-chart.openshift.io/providerType: partner
+      helm-chart.openshift.io/submissionTimestamp: '2021-04-28T16:32:29.306168+00:00'
+      helm-chart.openshift.io/supportURL: http://acme-help-is-here.com/
+    apiversion: v2
+    appversion: 1.16.0
+    condition: ''
+    dependencies: []
+    deprecated: false
+    description: A Helm chart for Awesomeness
+    home: ''
+    icon: https://www.example.com/chart-icon.png
+    keywords: []
+    kubeversion: ^1.15.0
+    maintainers: []
+    name: awesome
+    sources: []
+    tags: ''
+    type: application
+    urls:
+    - http://example.com/charts/awesome-0.1.0.tgz
+    version: 0.1.0
+generated: '2021-04-28T16:32:29.306168+00:00'
