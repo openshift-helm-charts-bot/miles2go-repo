@@ -4,11 +4,11 @@ entries:
   - annotations:
       helm-chart.openshift.io/archs: all
       helm-chart.openshift.io/digest: sha256:357f067395dfb6c97032bdca4a7e94f6f8cb1df0d3df5684ec71b6552737b767
-      helm-chart.openshift.io/lastCertifiedTimestamp: '2021-05-09T04:18:59.379662+00:00'
+      helm-chart.openshift.io/lastCertifiedTimestamp: '2021-05-09T04:24:33.515739+00:00'
       helm-chart.openshift.io/name: get your awesomeness here
       helm-chart.openshift.io/provider: acme
       helm-chart.openshift.io/providerType: partner
-      helm-chart.openshift.io/submissionTimestamp: '2021-05-09T04:18:59.881557+00:00'
+      helm-chart.openshift.io/submissionTimestamp: '2021-05-09T04:24:34.171228+00:00'
       helm-chart.openshift.io/supportURL: http://acme-help-is-here.com/
     apiVersion: v2
     appVersion: 1.16.0
@@ -20,4 +20,4 @@ entries:
     urls:
     - https://github.com/miles2go/repo/releases/download/test-org1-awesome-0.1.0/test-org1-awesome-0.1.0.tgz
     version: 0.1.0
-generated: '2021-05-09T04:18:59.881557+00:00'
+generated: '2021-05-09T04:24:34.171228+00:00'
