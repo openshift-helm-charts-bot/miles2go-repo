@@ -1,0 +1,23 @@
+apiVersion: v1
+entries:
+  test-org1-awesome:
+  - annotations:
+      helm-chart.openshift.io/archs: all
+      helm-chart.openshift.io/digest: sha256:dd213121ddc88aea8abeeb82d83a394799239052cb158589d384628511c0fd13
+      helm-chart.openshift.io/lastCertifiedTimestamp: '2021-05-12T01:59:39.770694+00:00'
+      helm-chart.openshift.io/name: get your awesomeness here
+      helm-chart.openshift.io/provider: acme
+      helm-chart.openshift.io/providerType: partner
+      helm-chart.openshift.io/submissionTimestamp: '2021-05-12T01:59:53.011992+00:00'
+      helm-chart.openshift.io/supportURL: http://acme-help-is-here.com/
+    apiVersion: v2
+    appVersion: 1.16.0
+    description: A Helm chart for Awesomeness
+    icon: https://www.example.com/chart-icon.png
+    kubeVersion: ^1.15.0
+    name: awesome
+    type: application
+    urls:
+    - https://github.com/miles2go/repo/releases/download/test-org1-awesome-0.1.0/test-org1-awesome-0.1.0.tgz
+    version: 0.1.0
+generated: '2021-05-12T01:59:53.011992+00:00'
