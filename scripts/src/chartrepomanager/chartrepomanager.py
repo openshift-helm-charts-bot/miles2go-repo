@@ -246,6 +246,11 @@ def update_chart_annotation(category, organization, chart_file_name, chart, repo
         vendor_name = out["vendor"]["name"]
         annotations["charts.openshift.io/provider"] = vendor_name
 
+    if "charts.openshift.io/certifiedOpenShiftVersions" in annotations:
+        pattern = re.compile("(\d+).(\d+).*")
+        full_version = annotations["charts.openshift.io/certifiedOpenShiftVersions"]
+        annotations["charts.openshift.io/certifiedOpenShiftVersions"] = ".".join(pattern.match(full_version).groups())
+
     out = subprocess.run(["tar", "zxvf", os.path.join(".cr-release-packages", f"{organization}-{chart_file_name}"), "-C", dr], capture_output=True)
     print(out.stdout.decode("utf-8"))
     print(out.stderr.decode("utf-8"))
