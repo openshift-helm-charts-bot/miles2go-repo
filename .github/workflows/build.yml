@@ -52,6 +52,20 @@ jobs:
               name: 'sanity-ok'
             })
 
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          path: "pr-branch"
+
+      - name: Test CI Workflow
+        if: steps.sanity_check_pr_content.outcome == 'failure' && contains(github.event.pull_request.labels.*.name, 'allow/ci-changes')
+        run: |
+          cd pr-branch
+          ../ve1/bin/behave
+          cd ..
+
       - name: Reflect on Sanity Check PR Content
         if: ${{ steps.sanity_check_pr_content.outcome == 'failure'}}
         run: |
@@ -71,13 +85,6 @@ jobs:
               issue_number: Number(issue_number),
               name: 'authorized-request'
             })
-
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          path: "pr-branch"
 
       - name: Get Date
         id: get-date
