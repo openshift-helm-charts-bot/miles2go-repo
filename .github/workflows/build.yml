@@ -117,6 +117,7 @@ jobs:
 
       - name: 'Verify PR - generate report'
         id: verify_pr
+        if: steps.sanity_check_pr_content.outcome == 'success'
         env:
           KUBECONFIG: /tmp/ci-kubeconfig
         run: |
@@ -188,14 +189,14 @@ jobs:
 
       - name: 'Approve PR'
         id: approve_pr
-        if: ${{ steps.verify_pr.conclusion == 'success' }}
+        if: steps.verify_pr.conclusion == 'success' && steps.sanity_check_pr_content.outcome == 'success'
         uses: hmarr/auto-approve-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 'Merge PR'
         id: merge_pr
-        if: ${{ steps.approve_pr.conclusion == 'success' }}
+        if: steps.verify_pr.conclusion == 'success' && steps.sanity_check_pr_content.outcome == 'success'
         uses: pascalgn/automerge-action@v0.13.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -213,6 +214,7 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Release Charts
+        if: steps.verify_pr.conclusion == 'success' && steps.sanity_check_pr_content.outcome == 'success'
         env:
           GITHUB_REF: ${{ github.ref }}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -227,6 +229,7 @@ jobs:
           ../ve1/bin/chart-repo-manager --repository=${{ github.repository }} --index-branch=${INDEX_BRANCH} --api-url=${{ github.event.pull_request._links.self.href }} --pr-number=${{ github.event.number }}
 
       - name: Release
+        if: steps.verify_pr.conclusion == 'success' && steps.sanity_check_pr_content.outcome == 'success'
         uses: softprops/action-gh-release@master
         continue-on-error: true
         with:
