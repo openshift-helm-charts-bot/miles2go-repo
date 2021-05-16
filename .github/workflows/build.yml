@@ -60,6 +60,7 @@ jobs:
           path: "pr-branch"
 
       - name: Test CI Workflow
+        id: test_ci_workflow
         if: steps.sanity_check_pr_content.outcome == 'failure' && contains(github.event.pull_request.labels.*.name, 'allow/ci-changes')
         run: |
           cd pr-branch
@@ -67,7 +68,7 @@ jobs:
           cd ..
 
       - name: Reflect on Sanity Check PR Content
-        if: ${{ steps.sanity_check_pr_content.outcome == 'failure'}}
+        if: steps.sanity_check_pr_content.outcome == 'failure' && steps.test_ci_workflow.outcome == 'failure'
         run: |
           echo "The 'Sanity Check PR Content' step has failed."
           exit 1
