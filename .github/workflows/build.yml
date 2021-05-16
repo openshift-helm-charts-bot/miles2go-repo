@@ -135,7 +135,7 @@ jobs:
 
 
       - name: Delete Namespace
-        if: always() && steps.sanity_check_pr_content.outputs.report-exists != 'true'
+        if: always() && steps.sanity_check_pr_content.outcome == 'success'
         env:
           KUBECONFIG: /tmp/ci-kubeconfig
         run: |
