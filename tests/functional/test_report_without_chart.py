@@ -34,11 +34,13 @@ def secrets():
     fork_repo = os.environ.get("FORK_REPO")
     if not fork_repo:
         raise Exception("FORK_REPO environment variable not defined")
+    bot_name = fork_repo.split("/")[0]
     cluster_token = os.environ.get("CLUSTER_TOKEN")
     if not cluster_token:
         raise Exception("CLUSTER_TOKEN environment variable not defined")
     bot_token = os.environ.get("BOT_TOKEN")
     if not bot_token:
+        bot_name = "github-actions[bot]"
         bot_token = os.environ.get("GITHUB_TOKEN")
         if not bot_token:
             raise Exception("BOT_TOKEN environment variable not defined")
@@ -47,7 +49,6 @@ def secrets():
         raise Exception("PR_NUMBER environment variable not defined")
 
     pr_base_branch = "test-pr-"+pr_number
-    bot_name = fork_repo.split("/")[0]
     return Secret(test_repo, fork_repo, cluster_token, bot_token, bot_name, pr_base_branch)
 
 @scenario('features/report_without_chart.feature', 'Partner submits report without any errors')
