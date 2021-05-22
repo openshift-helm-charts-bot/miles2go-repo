@@ -131,7 +131,7 @@ def the_partner_has_created_a_report_without_any_errors(secrets):
     print(out.stderr.decode("utf-8"))
 
     fork_branch = secrets.pr_base_branch + "-s1"
-    out = subprocess.run(["git", "push", f"https://x-access-token:{secrets.bot_token}@github.com/{secrets.fork_repo}", f"HEAD:{fork_branch}", "-f"], capture_output=True)
+    out = subprocess.run(["git", "push", f"https://x-access-token:{secrets.bot_token}@github.com/{secrets.fork_repo}", f"HEAD:refs/heads/{fork_branch}", "-f"], capture_output=True)
     print(out.stdout.decode("utf-8"))
     print(out.stderr.decode("utf-8"))
 
